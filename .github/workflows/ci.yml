@@ -1,0 +1,23 @@
+name: macOS build
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Test
+        run: swift test
+      - name: Build application
+        run: bash scripts/build-app.sh
+      - name: Package application
+        run: ditto -c -k --keepParent 'dist/口算练习.app' 'dist/MentalMathGlass-macOS.zip'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: MentalMathGlass-macOS
+          path: dist/MentalMathGlass-macOS.zip
