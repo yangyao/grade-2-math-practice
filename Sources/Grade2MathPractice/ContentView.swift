@@ -1,5 +1,7 @@
 import SwiftUI
+#if canImport(PracticeCore)
 import PracticeCore
+#endif
 
 private let ink = Color(red: 0.23, green: 0.29, blue: 0.42)
 private let purple = Color(red: 0.37, green: 0.43, blue: 0.72)
@@ -32,7 +34,9 @@ struct ContentView: View {
         .background(PracticeBackdrop())
         .foregroundStyle(ink)
         .preferredColorScheme(.light)
+        #if os(macOS)
         .background(KeyboardInput(enabled: store.keyboardEnabled, input: store.input, next: store.next).frame(width: 0, height: 0))
+        #endif
         .sheet(isPresented: $store.showingHistory) { historyView }
         .sheet(isPresented: $store.confirmingRestart) { restartView }
 
@@ -202,7 +206,7 @@ struct ContentView: View {
     private func statistic(_ label: String, value: String) -> some View {
         VStack(spacing: 7) { Text(value).font(.system(size: 28, weight: .bold, design: .rounded)).monospacedDigit().foregroundStyle(purple); Text(label).font(.caption).foregroundStyle(.secondary) }
     }
-    private var restartView: some View {
+    var restartView: some View {
         VStack(spacing: 24) {
             Image(systemName: "arrow.counterclockwise")
                 .font(.system(size: 32, weight: .medium))
@@ -223,12 +227,12 @@ struct ContentView: View {
             }
         }
         .padding(32)
-        .frame(width: 460, height: 300)
+        .practiceSheetSize(width: 460, height: 300)
         .background(PracticeBackdrop())
         .preferredColorScheme(.light)
     }
 
-    private var historyView: some View {
+    var historyView: some View {
         VStack(alignment: .leading, spacing: 24) {
             HStack {
                 Text("练习记录").font(.system(size: 26, weight: .semibold, design: .rounded))
@@ -277,7 +281,7 @@ struct ContentView: View {
             }
         }
         .padding(28)
-        .frame(width: 620, height: 480, alignment: .topLeading)
+        .practiceSheetSize(width: 620, height: 480)
         .foregroundStyle(ink)
         .background(PracticeBackdrop())
         .preferredColorScheme(.light)

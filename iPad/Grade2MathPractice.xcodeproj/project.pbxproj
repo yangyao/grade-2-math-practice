@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		21B64EEFE614514E1C965A19 /* PracticeStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = C43BBC0EB2DB9563A233A120 /* PracticeStore.swift */; };
+		2C8D3B3F12E5A5C42942334E /* GlassTheme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5635D0E1928CDA0661EEFB92 /* GlassTheme.swift */; };
+		3C4ED900D29FC34C3E8F34CB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A23AD4605F779CAB1652E5E2 /* Assets.xcassets */; };
+		450C9D8887267131120A9E0A /* questions.json in Resources */ = {isa = PBXBuildFile; fileRef = 1DD6D841DC50145D6EFA2848 /* questions.json */; };
+		52AA6825B4F2B2A4FF71CDB5 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEEB1EF04D3792612A6FF884 /* ContentView.swift */; };
+		8C4453110EBC937310E93DBA /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8448B31A23E58A8BB76B0DE5 /* Foundation.framework */; };
+		9FCAF6EB464E2BECA02F6DEE /* PracticeSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 096E8DE16DA5C7F148C6A0BA /* PracticeSession.swift */; };
+		C308945C0D79A155073BDD0E /* Grade2MathPracticeIPadApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1444D184DC44BB45A97763D /* Grade2MathPracticeIPadApp.swift */; };
+		EC72BC68FA559FE8F6A840FB /* TabletPracticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A4BCEE6EFF8EF94BD05EA2F /* TabletPracticeView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		096E8DE16DA5C7F148C6A0BA /* PracticeSession.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PracticeSession.swift; path = ../Sources/PracticeCore/PracticeSession.swift; sourceTree = "<group>"; };
+		1DD6D841DC50145D6EFA2848 /* questions.json */ = {isa = PBXFileReference; includeInIndex = 1; name = questions.json; path = ../Sources/Grade2MathPractice/Resources/questions.json; sourceTree = "<group>"; };
+		5635D0E1928CDA0661EEFB92 /* GlassTheme.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = GlassTheme.swift; path = ../Sources/Grade2MathPractice/GlassTheme.swift; sourceTree = "<group>"; };
+		6A4BCEE6EFF8EF94BD05EA2F /* TabletPracticeView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TabletPracticeView.swift; path = Sources/TabletPracticeView.swift; sourceTree = "<group>"; };
+		8448B31A23E58A8BB76B0DE5 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		8596D265184CFE4BBCE669A9 /* Grade2MathPracticeIPad.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Grade2MathPracticeIPad.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A23AD4605F779CAB1652E5E2 /* Assets.xcassets */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		C1444D184DC44BB45A97763D /* Grade2MathPracticeIPadApp.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Grade2MathPracticeIPadApp.swift; path = Sources/Grade2MathPracticeIPadApp.swift; sourceTree = "<group>"; };
+		C43BBC0EB2DB9563A233A120 /* PracticeStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = PracticeStore.swift; path = ../Sources/Grade2MathPractice/PracticeStore.swift; sourceTree = "<group>"; };
+		CEEB1EF04D3792612A6FF884 /* ContentView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ../Sources/Grade2MathPractice/ContentView.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		AF866F28414786B73C2DB278 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8C4453110EBC937310E93DBA /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		25BF13CFC2D920542A3AC46E /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				096E8DE16DA5C7F148C6A0BA /* PracticeSession.swift */,
+				C43BBC0EB2DB9563A233A120 /* PracticeStore.swift */,
+				5635D0E1928CDA0661EEFB92 /* GlassTheme.swift */,
+				CEEB1EF04D3792612A6FF884 /* ContentView.swift */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		4A4301945A676DE655175C07 = {
+			isa = PBXGroup;
+			children = (
+				A8E76FD61BAC3B74D1A94993 /* Products */,
+				D05EA0B350E316C61A56293A /* Frameworks */,
+				25BF13CFC2D920542A3AC46E /* Shared */,
+				C6F0EFB4BB4B89F1B940EB5F /* iPad */,
+				D031201DCBF73B6B79A38E0B /* Resources */,
+			);
+			sourceTree = "<group>";
+		};
+		A8E76FD61BAC3B74D1A94993 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8596D265184CFE4BBCE669A9 /* Grade2MathPracticeIPad.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		C6F0EFB4BB4B89F1B940EB5F /* iPad */ = {
+			isa = PBXGroup;
+			children = (
+				6A4BCEE6EFF8EF94BD05EA2F /* TabletPracticeView.swift */,
+				C1444D184DC44BB45A97763D /* Grade2MathPracticeIPadApp.swift */,
+			);
+			name = iPad;
+			sourceTree = "<group>";
+		};
+		D031201DCBF73B6B79A38E0B /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1DD6D841DC50145D6EFA2848 /* questions.json */,
+				A23AD4605F779CAB1652E5E2 /* Assets.xcassets */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		D05EA0B350E316C61A56293A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D4ED9CF574B3FF61574639A5 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D4ED9CF574B3FF61574639A5 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				8448B31A23E58A8BB76B0DE5 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52B6C73110CCFC529CD2F0C7 /* Grade2MathPracticeIPad */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 422B537E81D5B0A1353BA53E /* Build configuration list for PBXNativeTarget "Grade2MathPracticeIPad" */;
+			buildPhases = (
+				12A1F348C6DDBA86FD2084CA /* Sources */,
+				AF866F28414786B73C2DB278 /* Frameworks */,
+				B3225637E7D76D6C188D6E44 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Grade2MathPracticeIPad;
+			productName = Grade2MathPracticeIPad;
+			productReference = 8596D265184CFE4BBCE669A9 /* Grade2MathPracticeIPad.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		30BC98DED7635786D763544C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+			};
+			buildConfigurationList = 2A845D5205100E33B419F9B2 /* Build configuration list for PBXProject "Grade2MathPractice" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4A4301945A676DE655175C07;
+			minimizedProjectReferenceProxies = 0;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = A8E76FD61BAC3B74D1A94993 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52B6C73110CCFC529CD2F0C7 /* Grade2MathPracticeIPad */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B3225637E7D76D6C188D6E44 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				450C9D8887267131120A9E0A /* questions.json in Resources */,
+				3C4ED900D29FC34C3E8F34CB /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		12A1F348C6DDBA86FD2084CA /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FCAF6EB464E2BECA02F6DEE /* PracticeSession.swift in Sources */,
+				21B64EEFE614514E1C965A19 /* PracticeStore.swift in Sources */,
+				2C8D3B3F12E5A5C42942334E /* GlassTheme.swift in Sources */,
+				52AA6825B4F2B2A4FF71CDB5 /* ContentView.swift in Sources */,
+				EC72BC68FA559FE8F6A840FB /* TabletPracticeView.swift in Sources */,
+				C308945C0D79A155073BDD0E /* Grade2MathPracticeIPadApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		17433203DC9D2D94FCC92883 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		218CC08417FE93A5063F5CCE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		2652D1D873B2F51E7BC96582 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "口算练习";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.yangyao.Grade2MathPractice.iPad;
+				PRODUCT_NAME = Grade2MathPracticeIPad;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 2;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A2AC9D02FF096E446B74A975 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_STYLE = Automatic;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "口算练习";
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = dev.yangyao.Grade2MathPractice.iPad;
+				PRODUCT_NAME = Grade2MathPracticeIPad;
+				SDKROOT = iphoneos;
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 2;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2A845D5205100E33B419F9B2 /* Build configuration list for PBXProject "Grade2MathPractice" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				17433203DC9D2D94FCC92883 /* Debug */,
+				218CC08417FE93A5063F5CCE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		422B537E81D5B0A1353BA53E /* Build configuration list for PBXNativeTarget "Grade2MathPracticeIPad" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2652D1D873B2F51E7BC96582 /* Release */,
+				A2AC9D02FF096E446B74A975 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 30BC98DED7635786D763544C /* Project object */;
+}

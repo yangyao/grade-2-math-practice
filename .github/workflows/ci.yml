@@ -21,3 +21,14 @@ jobs:
         with:
           name: Grade2MathPractice-macOS
           path: dist/Grade2MathPractice-macOS.zip
+
+  ipad-build:
+    runs-on: macos-26
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build iPad simulator app
+        run: >-
+          xcodebuild -project iPad/Grade2MathPractice.xcodeproj
+          -scheme Grade2MathPracticeIPad -sdk iphonesimulator
+          -destination 'generic/platform=iOS Simulator'
+          -derivedDataPath .build/iPad build CODE_SIGNING_ALLOWED=NO

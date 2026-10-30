@@ -1,5 +1,7 @@
 import SwiftUI
+#if canImport(PracticeCore)
 import PracticeCore
+#endif
 
 @MainActor
 final class PracticeStore: ObservableObject {
@@ -12,7 +14,12 @@ final class PracticeStore: ObservableObject {
     let storageURL: URL
 
     init() throws {
-        guard let url = Bundle.module.url(forResource: "questions", withExtension: "json") else { throw CocoaError(.fileNoSuchFile) }
+        #if SWIFT_PACKAGE
+        let resources = Bundle.module
+        #else
+        let resources = Bundle.main
+        #endif
+        guard let url = resources.url(forResource: "questions", withExtension: "json") else { throw CocoaError(.fileNoSuchFile) }
         questions = try JSONDecoder().decode([Question].self, from: Data(contentsOf: url))
         guard !questions.isEmpty else { throw CocoaError(.fileReadCorruptFile) }
         let base = try FileManager.default.url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: true)

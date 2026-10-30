@@ -27,7 +27,7 @@ private struct PracticeGlass: ViewModifier {
     @ViewBuilder func body(content: Content) -> some View {
         if reduceTransparency {
             content.background(Color.white.opacity(0.96), in: RoundedRectangle(cornerRadius: radius))
-        } else if #available(macOS 26.0, *) {
+        } else if #available(iOS 26.0, macOS 26.0, *) {
             content.glassEffect(.clear.tint(tint).interactive(interactive), in: RoundedRectangle(cornerRadius: radius))
         } else {
             content.background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: radius))
@@ -41,7 +41,7 @@ extension View {
         modifier(PracticeGlass(radius: radius, tint: tint, interactive: interactive))
     }
     @ViewBuilder func groupedGlass() -> some View {
-        if #available(macOS 26.0, *) { GlassEffectContainer(spacing: 4) { self } }
+        if #available(iOS 26.0, macOS 26.0, *) { GlassEffectContainer(spacing: 4) { self } }
         else { self }
     }
 }
@@ -49,11 +49,15 @@ extension View {
 struct ArithmeticMark: View {
     var body: some View {
         Group {
+            #if os(macOS)
             if let url = Bundle.main.url(forResource: "ArithmeticGlass", withExtension: "icns"), let image = NSImage(contentsOf: url) {
                 Image(nsImage: image).resizable().interpolation(.high).frame(width: 58, height: 58)
             } else {
                 Image(systemName: "plus.forwardslash.minus").font(.system(size: 30, weight: .semibold)).frame(width: 58, height: 58)
             }
+            #else
+            Image("AppIconPreview").resizable().scaledToFit().frame(width: 58, height: 58)
+            #endif
         }.accessibilityHidden(true)
     }
 }
@@ -90,5 +94,16 @@ struct PracticeActionStyle: ButtonStyle {
             }
             .practiceGlass(radius: 16, tint: prominent ? .indigo.opacity(0.12) : .white.opacity(0.35), interactive: true)
             .scaleEffect(configuration.isPressed ? 0.98 : 1)
+    }
+}
+
+// Keep desktop sheets compact while allowing iPad Split View to constrain width.
+extension View {
+    @ViewBuilder func practiceSheetSize(width: CGFloat, height: CGFloat) -> some View {
+        #if os(macOS)
+        self.frame(width: width, height: height)
+        #else
+        self.frame(maxWidth: width).frame(height: height)
+        #endif
     }
 }
