@@ -8,17 +8,17 @@
 
 **口算练习**
 
-![口算练习主界面：题目、计时、附近五题和数字键盘](docs/screenshots/practice.png)
+![口算练习主界面：题目、计时、附近五题和数字键盘](docs/screenshots/practice.jpg)
 
 **比较大小**
 
 切换到比较题时，键盘区域和翻题按钮的位置保持不变。
 
-![比较大小题：大于、小于、等于符号键盘](docs/screenshots/comparison.png)
+![比较大小题：大于、小于、等于符号键盘](docs/screenshots/comparison.jpg)
 
 | 练习记录（首次使用，暂无成绩） | 重新开始确认 |
 | --- | --- |
-| ![练习记录弹窗：用时与答对列对齐，当前暂无记录](docs/screenshots/history.png) | ![重新开始确认卡片：继续做或重新开始](docs/screenshots/restart.png) |
+| ![练习记录弹窗：用时与答对列对齐，当前暂无记录](docs/screenshots/history.jpg) | ![重新开始确认卡片：继续做或重新开始](docs/screenshots/restart.jpg) |
 
 ## 功能
 
