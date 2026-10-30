@@ -189,6 +189,9 @@ struct ContentView: View {
             HStack(spacing: 15) {
                 if store.isReview { Button("返回整套") { store.leaveReview() }.buttonStyle(PracticeActionStyle()) }
                 Button("再练一次") { store.restart() }.buttonStyle(PracticeActionStyle(prominent: true)).controlSize(.large)
+                if let record = store.currentResultRecord, record.canReview {
+                    Button("练习错题") { store.review(record) }.buttonStyle(PracticeActionStyle()).controlSize(.large)
+                }
                 Button("记录") { store.showingHistory = true }.buttonStyle(PracticeActionStyle()).controlSize(.large)
             }
             if correct < store.questions.count {

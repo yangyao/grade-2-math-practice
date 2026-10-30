@@ -46,6 +46,13 @@ final class PracticeStore: ObservableObject {
     var current: Question { questions[session.index] }
     var best: PracticeRecord? { isReview ? nil : archive.best }
     var isFinished: Bool { session.finishedAt != nil }
+    var currentResultRecord: PracticeRecord? {
+        guard let finish = session.finishedAt else { return nil }
+        return archive.records.first {
+            $0.date == finish && $0.total == questions.count && $0.isReviewPractice == isReview
+                && $0.correct == session.correctCount(questions: questions)
+        }
+    }
     var comparison: Bool { ["<", ">", "="].contains(current.answers[session.activeBlank]) }
     var nextLabel: String { session.activeBlank < current.answers.count - 1 ? "下一空" : session.index == questions.count - 1 ? "完成练习" : "下一题" }
     var keyboardEnabled: Bool { !showingHistory && !confirmingRestart && !isFinished }
