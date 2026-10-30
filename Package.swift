@@ -2,12 +2,12 @@
 import PackageDescription
 
 let package = Package(
-    name: "MentalMathGlass",
+    name: "Grade2MathPractice",
     platforms: [.macOS(.v14)],
-    products: [.executable(name: "MentalMathGlass", targets: ["MentalMathGlass"])],
+    products: [.executable(name: "Grade2MathPractice", targets: ["Grade2MathPractice"])],
     targets: [
         .target(name: "PracticeCore"),
-        .executableTarget(name: "MentalMathGlass", dependencies: ["PracticeCore"], resources: [.process("Resources")]),
+        .executableTarget(name: "Grade2MathPractice", dependencies: ["PracticeCore"], resources: [.process("Resources")]),
         .testTarget(name: "PracticeCoreTests", dependencies: ["PracticeCore"])
     ]
 )

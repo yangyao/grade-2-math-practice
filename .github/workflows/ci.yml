@@ -16,8 +16,8 @@ jobs:
       - name: Build application
         run: bash scripts/build-app.sh
       - name: Package application
-        run: ditto -c -k --keepParent 'dist/口算练习.app' 'dist/MentalMathGlass-macOS.zip'
+        run: ditto -c -k --keepParent 'dist/口算练习.app' 'dist/Grade2MathPractice-macOS.zip'
       - uses: actions/upload-artifact@v4
         with:
-          name: MentalMathGlass-macOS
-          path: dist/MentalMathGlass-macOS.zip
+          name: Grade2MathPractice-macOS
+          path: dist/Grade2MathPractice-macOS.zip

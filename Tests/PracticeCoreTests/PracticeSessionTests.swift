@@ -4,7 +4,7 @@ import XCTest
 final class PracticeSessionTests: XCTestCase {
     func testCompleteRealHundredQuestionSet() throws {
         let package = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
-        let data = try Data(contentsOf: package.appendingPathComponent("Sources/MentalMathGlass/Resources/questions.json"))
+        let data = try Data(contentsOf: package.appendingPathComponent("Sources/Grade2MathPractice/Resources/questions.json"))
         let qs = try JSONDecoder().decode([Question].self, from: data)
         XCTAssertEqual(qs.count, 100)
         var session = PracticeSession(questions: qs)

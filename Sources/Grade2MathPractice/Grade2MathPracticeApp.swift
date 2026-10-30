@@ -2,7 +2,7 @@ import SwiftUI
 import AppKit
 
 @main
-struct MentalMathGlassApp: App {
+struct Grade2MathPracticeApp: App {
     @StateObject private var store: PracticeStore
     init() {
         if let iconURL = Bundle.main.url(forResource: "ArithmeticGlass", withExtension: "icns"), let image = NSImage(contentsOf: iconURL) {

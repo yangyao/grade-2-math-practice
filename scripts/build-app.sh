@@ -8,7 +8,7 @@ TASK_APP="$TASK_ROOT/dist/口算练习.app"
 mkdir -p "$TASK_APP/Contents/MacOS" "$TASK_APP/Contents/Resources"
 swift scripts/make-icon.swift "$TASK_ROOT/.build/AppIcon.iconset"
 iconutil -c icns "$TASK_ROOT/.build/AppIcon.iconset" -o "$TASK_APP/Contents/Resources/ArithmeticGlass.icns"
-cp "$TASK_BIN/MentalMathGlass" "$TASK_APP/Contents/MacOS/MentalMathGlass"
+cp "$TASK_BIN/Grade2MathPractice" "$TASK_APP/Contents/MacOS/Grade2MathPractice"
 # SwiftPM resolves Bundle.module relative to the executable's parent on macOS.
 for TASK_BUNDLE in "$TASK_BIN"/*.bundle; do
   [ -d "$TASK_BUNDLE" ] || continue
@@ -22,7 +22,7 @@ cat > "$TASK_APP/Contents/Info.plist" <<'PLIST'
 <key>CFBundleName</key><string>口算练习</string>
 <key>CFBundleDisplayName</key><string>口算练习</string>
 <key>CFBundleIdentifier</key><string>dev.yangyao.MentalMathGlass</string>
-<key>CFBundleExecutable</key><string>MentalMathGlass</string>
+<key>CFBundleExecutable</key><string>Grade2MathPractice</string>
 <key>CFBundleIconFile</key><string>ArithmeticGlass.icns</string>
 <key>CFBundlePackageType</key><string>APPL</string>
 <key>CFBundleShortVersionString</key><string>1.2.0</string>

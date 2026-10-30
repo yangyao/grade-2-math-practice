@@ -1,6 +1,6 @@
-# Mental Math Glass · 口算练习
+# 小学二年级口算练习
 
-一个简洁、可离线使用的 macOS 原生口算练习应用，使用 SwiftUI 构建。界面为儿童练习设计，突出题目、计时和输入，减少文字说明。
+面向小学二年级的 macOS 原生口算练习应用，可离线使用，使用 SwiftUI 构建。界面为儿童练习设计，突出题目、计时和输入，减少文字说明。
 
 ## 功能
 
@@ -29,13 +29,13 @@ bash scripts/build-app.sh
 
 生成 `dist/口算练习.app`，双击打开或拖入“应用程序”目录。脚本生成图标并使用本机ad-hoc签名；不要求开发者证书。向其他Mac广泛分发时，可增加Developer ID签名和公证。
 
-也可以用Xcode打开 `Package.swift`，选择 `MentalMathGlass` 可执行目标运行。
+也可以用Xcode打开 `Package.swift`，选择 `Grade2MathPractice` 可执行目标运行。
 
 ## 项目结构
 
 ```text
 Sources/PracticeCore/       题目模型、答题、计时、判题与纪录
-Sources/MentalMathGlass/    SwiftUI界面、键盘和本地保存
+Sources/Grade2MathPractice/    SwiftUI界面、键盘和本地保存
 Tests/PracticeCoreTests/    完整100题、计时、漏题及纪录测试
 scripts/                   app打包与程序化图标生成
 ```
