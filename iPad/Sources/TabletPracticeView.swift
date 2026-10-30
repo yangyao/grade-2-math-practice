@@ -38,7 +38,11 @@ struct TabletPracticeView: View {
     private func header(compact: Bool) -> some View {
         HStack(spacing: 10) {
             ArithmeticMark()
-            if !compact { Text("口算练习").font(.system(size: 23, weight: .semibold, design: .rounded)) }
+            if store.isReview {
+                Button { store.leaveReview() } label: { Image(systemName: "arrow.uturn.backward").font(.system(size: 22)).frame(width: 24, height: 24) }
+                    .buttonStyle(PracticeActionStyle()).accessibilityLabel("返回整套练习")
+            }
+            if !compact { Text(store.isReview ? "错题练习" : "口算练习").font(.system(size: 23, weight: .semibold, design: .rounded)) }
             Spacer(minLength: 8)
             Button { store.showingHistory = true } label: { Image(systemName: "clock.arrow.circlepath").font(.system(size: 22)).frame(width: 24, height: 24) }
                 .buttonStyle(PracticeActionStyle()).accessibilityLabel("练习记录")
@@ -149,6 +153,7 @@ struct TabletPracticeView: View {
                 Text("\(PracticeStore.seconds(store.session.elapsed())) 秒").font(.system(size: 44, weight: .semibold, design: .rounded)).monospacedDigit()
                 Text("答对 \(correct) / \(store.questions.count)").font(.system(size: 24))
                 if store.session.isNewRecord { Label("新纪录！", systemImage: "trophy.fill").font(.title2).foregroundStyle(.orange) }
+                if store.isReview { Button("返回整套") { store.leaveReview() }.font(.title2).buttonStyle(PracticeActionStyle()) }
                 Button("再练一次") { store.restart() }.font(.title2.bold()).buttonStyle(PracticeActionStyle(prominent: true))
                 ForEach(store.questions.indices.filter { !store.session.isCorrect($0, questions: store.questions) }, id: \.self) { index in
                     VStack(alignment: .leading, spacing: 8) {

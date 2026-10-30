@@ -2,6 +2,78 @@ import XCTest
 @testable import PracticeCore
 
 final class PracticeSessionTests: XCTestCase {
+    func testWrongQuestionReviewAndReturnToFullSession() throws {
+        let qs = try questions()
+        var session = PracticeSession(questions: qs)
+        session.answers = [["8"], ["12", "4"], ["="]]
+        session.startedAt = Date(timeIntervalSince1970: 1000)
+        session.finishedAt = Date(timeIntervalSince1970: 1040)
+        var archive = PracticeArchive(session: session, records: [])
+        archive.addRecord(questions: qs)
+        let original = archive.records[0]
+        XCTAssertEqual(original.wrongCount, 2)
+        XCTAssertEqual(original.mistakes?.map(\.id), [1, 2])
+        XCTAssertTrue(original.canReview)
+        XCTAssertTrue(archive.beginReview(original))
+        let review = try XCTUnwrap(archive.reviewQuestions)
+        XCTAssertEqual(archive.session.answers, [[""], ["", ""]])
+        archive.session.answers = review.map(\.answers)
+        archive.session.startedAt = Date(timeIntervalSince1970: 1050)
+        archive.session.finishedAt = Date(timeIntervalSince1970: 1053)
+        archive.addRecord(questions: review)
+        XCTAssertTrue(archive.records[0].isReviewPractice)
+        XCTAssertEqual(archive.records[0].wrongCount, 0)
+        XCTAssertFalse(archive.records[0].canReview)
+        XCTAssertNil(archive.best)
+        XCTAssertFalse(archive.session.isNewRecord)
+        let saved = try JSONDecoder().decode(PracticeArchive.self, from: JSONEncoder().encode(archive))
+        archive = saved
+        archive.endReview(questions: qs)
+        XCTAssertNil(archive.reviewQuestions)
+        XCTAssertEqual(archive.session.answers, session.answers)
+        XCTAssertEqual(archive.session.finishedAt, session.finishedAt)
+    }
+
+    func testLegacyRecordsAndRecoverableLastRound() throws {
+        let qs = try questions()
+        var session = PracticeSession(questions: qs)
+        session.answers = [["8"], ["12", "3"], ["="]]
+        session.startedAt = Date(timeIntervalSince1970: 1000)
+        session.finishedAt = Date(timeIntervalSince1970: 1040)
+        var archive = PracticeArchive(session: session, records: [])
+        archive.addRecord(questions: qs)
+        var object = try XCTUnwrap(JSONSerialization.jsonObject(with: JSONEncoder().encode(archive)) as? [String: Any])
+        var rows = try XCTUnwrap(object["records"] as? [[String: Any]])
+        rows[0].removeValue(forKey: "mistakes")
+        rows[0].removeValue(forKey: "isReview")
+        object["records"] = rows
+        object.removeValue(forKey: "reviewQuestions")
+        object.removeValue(forKey: "suspendedSession")
+        archive = try JSONDecoder().decode(PracticeArchive.self, from: JSONSerialization.data(withJSONObject: object))
+        XCTAssertEqual(archive.records[0].wrongCount, 1)
+        XCTAssertFalse(archive.records[0].canReview)
+        XCTAssertFalse(archive.beginReview(archive.records[0]))
+        archive.recoverCurrentMistakes(questions: qs)
+        XCTAssertTrue(archive.records[0].canReview)
+        XCTAssertEqual(archive.records[0].mistakes?.map(\.id), [1])
+    }
+
+    func testSwitchingReviewDoesNotReplaceSuspendedProgress() throws {
+        let qs = try questions()
+        var archive = PracticeArchive(session: PracticeSession(questions: qs), records: [])
+        archive.session.answers = [["8"], ["12", "3"], ["<"]]
+        archive.session.startedAt = Date(timeIntervalSince1970: 1000)
+        archive.session.finishedAt = Date(timeIntervalSince1970: 1050)
+        archive.addRecord(questions: qs)
+        let source = archive.records[0]
+        archive.session = PracticeSession(questions: qs)
+        archive.session.input("9", questions: qs)
+        XCTAssertTrue(archive.beginReview(source))
+        XCTAssertTrue(archive.beginReview(source))
+        archive.endReview(questions: qs)
+        XCTAssertEqual(archive.session.answers[0], ["9"])
+        XCTAssertNil(archive.session.finishedAt)
+    }
     func testCompleteRealHundredQuestionSet() throws {
         let package = URL(fileURLWithPath: #filePath).deletingLastPathComponent().deletingLastPathComponent().deletingLastPathComponent()
         let data = try Data(contentsOf: package.appendingPathComponent("Sources/Grade2MathPractice/Resources/questions.json"))

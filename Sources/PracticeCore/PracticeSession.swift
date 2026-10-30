@@ -21,7 +21,15 @@ public struct PracticeRecord: Codable, Identifiable, Sendable {
     public var seconds: TimeInterval
     public var correct: Int
     public var total: Int
+    public var mistakes: [Question]?
+    public var isReview: Bool?
     public var isPerfect: Bool { correct == total }
+    public var wrongCount: Int { max(0, total - correct) }
+    public var isReviewPractice: Bool { isReview == true }
+    public var canReview: Bool {
+        guard let mistakes else { return false }
+        return wrongCount > 0 && mistakes.count == wrongCount && Set(mistakes.map(\.id)).count == wrongCount
+    }
 }
 
 public struct PracticeSession: Codable, Sendable {
@@ -98,15 +106,43 @@ public struct PracticeArchive: Codable, Sendable {
     public var version = 1
     public var session: PracticeSession
     public var records: [PracticeRecord]
+    public var reviewQuestions: [Question]?
+    public var suspendedSession: PracticeSession?
     public init(session: PracticeSession, records: [PracticeRecord]) { self.session = session; self.records = records }
-    public var best: PracticeRecord? { records.filter(\.isPerfect).min { $0.seconds < $1.seconds } }
+    public var best: PracticeRecord? { records.filter { $0.isPerfect && !$0.isReviewPractice }.min { $0.seconds < $1.seconds } }
     public mutating func addRecord(questions: [Question]) {
         guard let finish = session.finishedAt else { return }
-        let record = PracticeRecord(date: finish, seconds: session.elapsed(), correct: session.correctCount(questions: questions), total: questions.count)
-        session.isNewRecord = record.isPerfect && (best == nil || record.seconds < best!.seconds)
+        let wrong = questions.indices.filter { !session.isCorrect($0, questions: questions) }.map { questions[$0] }
+        let record = PracticeRecord(date: finish, seconds: session.elapsed(), correct: session.correctCount(questions: questions), total: questions.count, mistakes: wrong, isReview: reviewQuestions != nil)
+        session.isNewRecord = !record.isReviewPractice && record.isPerfect && (best == nil || record.seconds < best!.seconds)
         records.insert(record, at: 0)
         let allTimeBest = best
         records = Array(records.prefix(50))
         if let allTimeBest, !records.contains(where: { $0.id == allTimeBest.id }) { records[records.count - 1] = allTimeBest }
+    }
+
+    @discardableResult
+    public mutating func beginReview(_ record: PracticeRecord) -> Bool {
+        guard record.canReview, let mistakes = record.mistakes else { return false }
+        if reviewQuestions == nil { suspendedSession = session }
+        reviewQuestions = mistakes
+        session = PracticeSession(questions: mistakes)
+        return true
+    }
+
+    public mutating func endReview(questions: [Question]) {
+        guard reviewQuestions != nil else { return }
+        session = suspendedSession.flatMap { $0.isValid(questions: questions) ? $0 : nil } ?? PracticeSession(questions: questions)
+        reviewQuestions = nil
+        suspendedSession = nil
+    }
+
+    // Older archives retain answers for the current finished round only.
+    // Recover that one record when it matches exactly; never invent older mistakes.
+    public mutating func recoverCurrentMistakes(questions: [Question]) {
+        guard let finish = session.finishedAt,
+              let i = records.firstIndex(where: { $0.date == finish && $0.total == questions.count && $0.correct == session.correctCount(questions: questions) }),
+              records[i].mistakes == nil else { return }
+        records[i].mistakes = questions.indices.filter { !session.isCorrect($0, questions: questions) }.map { questions[$0] }
     }
 }

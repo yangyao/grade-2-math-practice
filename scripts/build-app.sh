@@ -25,8 +25,8 @@ cat > "$TASK_APP/Contents/Info.plist" <<'PLIST'
 <key>CFBundleExecutable</key><string>Grade2MathPractice</string>
 <key>CFBundleIconFile</key><string>ArithmeticGlass.icns</string>
 <key>CFBundlePackageType</key><string>APPL</string>
-<key>CFBundleShortVersionString</key><string>1.2.0</string>
-<key>CFBundleVersion</key><string>3</string>
+<key>CFBundleShortVersionString</key><string>1.3.0</string>
+<key>CFBundleVersion</key><string>4</string>
 <key>LSMinimumSystemVersion</key><string>14.0</string>
 <key>NSHighResolutionCapable</key><true/>
 <key>NSPrincipalClass</key><string>NSApplication</string>

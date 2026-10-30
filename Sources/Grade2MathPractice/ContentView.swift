@@ -13,7 +13,10 @@ struct ContentView: View {
         VStack(spacing: 20) {
             HStack(spacing: 13) {
                 ArithmeticMark()
-                Text("口算练习").font(.system(size: 22, weight: .semibold, design: .rounded))
+                if store.isReview {
+                    Button { store.leaveReview() } label: { Image(systemName: "arrow.uturn.backward") }.buttonStyle(PracticeActionStyle()).accessibilityLabel("返回整套练习")
+                }
+                Text(store.isReview ? "错题练习" : "口算练习").font(.system(size: 22, weight: .semibold, design: .rounded))
                 Spacer()
                 Button { store.showingHistory = true } label: { Image(systemName: "clock.arrow.circlepath").font(.title3) }
                     .buttonStyle(PracticeActionStyle()).accessibilityLabel("练习记录")
@@ -184,6 +187,7 @@ struct ContentView: View {
             }.padding(20)
             if store.session.isNewRecord { Label("新纪录！", systemImage: "trophy.fill").foregroundStyle(.orange) }
             HStack(spacing: 15) {
+                if store.isReview { Button("返回整套") { store.leaveReview() }.buttonStyle(PracticeActionStyle()) }
                 Button("再练一次") { store.restart() }.buttonStyle(PracticeActionStyle(prominent: true)).controlSize(.large)
                 Button("记录") { store.showingHistory = true }.buttonStyle(PracticeActionStyle()).controlSize(.large)
             }
@@ -243,7 +247,7 @@ struct ContentView: View {
             }
             HStack(spacing: 16) {
                 Text("用时").frame(maxWidth: .infinity, alignment: .leading)
-                Text("答对").frame(width: 105, alignment: .trailing)
+                Text("错题").frame(width: 105, alignment: .trailing)
                 Color.clear.frame(width: 30, height: 1)
             }.font(.system(size: 16, weight: .medium)).foregroundStyle(.secondary).padding(.horizontal, 18)
             ScrollView {
@@ -257,23 +261,37 @@ struct ContentView: View {
                             .background(.white.opacity(0.5), in: RoundedRectangle(cornerRadius: 17))
                     }
                     ForEach(store.archive.records) { record in
-                        HStack(alignment: .center, spacing: 16) {
-                            VStack(alignment: .leading, spacing: 7) {
-                                Text("\(PracticeStore.seconds(record.seconds)) 秒")
-                                    .font(.system(size: 25, weight: .semibold, design: .rounded)).monospacedDigit()
-                                    .foregroundStyle(purple)
-                                Text(record.date, format: .dateTime.month().day().hour().minute())
-                                    .font(.system(size: 14)).foregroundStyle(.secondary)
-                            }.frame(maxWidth: .infinity, alignment: .leading)
-                            Text("\(record.correct) / \(record.total)")
-                                .font(.system(size: 20, weight: .medium, design: .rounded)).monospacedDigit()
-                                .frame(width: 105, alignment: .trailing)
-                            Image(systemName: "trophy.fill").font(.system(size: 21)).foregroundStyle(.orange)
-                                .frame(width: 30).opacity(record.id == store.best?.id ? 1 : 0)
-                                .accessibilityLabel(record.id == store.best?.id ? "最快纪录" : "")
+                        VStack(alignment: .leading, spacing: 14) {
+                            HStack(alignment: .center, spacing: 16) {
+                                VStack(alignment: .leading, spacing: 7) {
+                                    Text("\(PracticeStore.seconds(record.seconds)) 秒")
+                                        .font(.system(size: 25, weight: .semibold, design: .rounded)).monospacedDigit().foregroundStyle(purple)
+                                    Text(record.date, format: .dateTime.month().day().hour().minute())
+                                        .font(.system(size: 14)).foregroundStyle(.secondary)
+                                    if record.isReviewPractice { Text("错题练习").font(.system(size: 14)).foregroundStyle(purple) }
+                                }.frame(maxWidth: .infinity, alignment: .leading)
+                                VStack(alignment: .trailing, spacing: 6) {
+                                    Text("错 \(record.wrongCount) 题")
+                                        .font(.system(size: 20, weight: .semibold, design: .rounded))
+                                        .foregroundStyle(record.wrongCount > 0 ? Color.orange : purple)
+                                    Text("\(record.correct) / \(record.total)").font(.system(size: 14)).foregroundStyle(.secondary)
+                                }.monospacedDigit().frame(width: 105, alignment: .trailing)
+                                Image(systemName: "trophy.fill").font(.system(size: 21)).foregroundStyle(.orange)
+                                    .frame(width: 30).opacity(record.id == store.best?.id ? 1 : 0)
+                                    .accessibilityLabel(record.id == store.best?.id ? "最快纪录" : "")
+                            }
+                            if record.canReview {
+                                HStack {
+                                    Spacer()
+                                    Button { store.review(record) } label: {
+                                        Label("练错题", systemImage: "arrow.right").font(.system(size: 18, weight: .semibold)).frame(minHeight: 26)
+                                    }.buttonStyle(PracticeActionStyle(prominent: true))
+                                }
+                            } else if record.wrongCount > 0 {
+                                Text("旧记录未保存具体题目").font(.system(size: 14)).foregroundStyle(.secondary)
+                            }
                         }
-                        .padding(18)
-                        .frame(maxWidth: .infinity, alignment: .leading)
+                        .padding(18).frame(maxWidth: .infinity, alignment: .leading)
                         .background(.white.opacity(0.55), in: RoundedRectangle(cornerRadius: 17))
                         .overlay(RoundedRectangle(cornerRadius: 17).stroke(.white.opacity(0.7), lineWidth: 1))
                     }
