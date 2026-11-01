@@ -11,17 +11,18 @@ struct TabletPracticeView: View {
             let padding: CGFloat = geometry.size.width < 600 ? 16 : 24
             VStack(spacing: 16) {
                 header(compact: geometry.size.width < 500)
+                if store.persistenceWarning { Text("记录未能保存").font(.caption).foregroundStyle(.orange) }
                 if store.isFinished { results }
                 else if wide {
                     HStack(spacing: 20) {
-                        question.frame(maxWidth: .infinity, maxHeight: .infinity)
+                        question(compact: geometry.size.width < 500).frame(maxWidth: .infinity, maxHeight: .infinity)
                         controls(keyHeight: min(78, max(54, (geometry.size.height - 290) / 4)))
                             .frame(width: min(440, geometry.size.width * 0.41))
                     }.frame(maxHeight: .infinity)
                 } else {
                     VStack(spacing: 18) {
-                        question.frame(maxWidth: .infinity, maxHeight: .infinity)
-                        controls(keyHeight: min(72, max(48, (geometry.size.height - 460) / 4)))
+                        question(compact: geometry.size.width < 500).frame(maxWidth: .infinity, maxHeight: .infinity)
+                        controls(keyHeight: min(72, max(44, (geometry.size.height - (geometry.size.width < 500 ? 500 : 460)) / 4)), compact: geometry.size.width < 500)
                             .frame(maxWidth: 560)
                     }.frame(maxWidth: .infinity, maxHeight: .infinity)
                 }
@@ -50,7 +51,7 @@ struct TabletPracticeView: View {
                 .buttonStyle(PracticeActionStyle()).accessibilityLabel("重新开始")
         }
     }
-    private var question: some View {
+    private func question(compact: Bool) -> some View {
         VStack(spacing: 12) {
             HStack(alignment: .center) {
                 Text("\(store.session.index + 1) / \(store.questions.count)")
@@ -60,9 +61,9 @@ struct TabletPracticeView: View {
                     HStack(alignment: .firstTextBaseline, spacing: 6) {
                         Image(systemName: "stopwatch").font(.system(size: 20))
                         Text(PracticeStore.seconds(store.session.elapsed(at: context.date)))
-                            .font(.system(size: 34, weight: .semibold, design: .rounded)).monospacedDigit()
+                            .font(.system(size: compact ? 28 : 34, weight: .semibold, design: .rounded)).monospacedDigit()
                         Text("秒").font(.system(size: 17))
-                    }.frame(width: 152, height: 68).practiceGlass(radius: 20, tint: .indigo.opacity(0.06))
+                    }.frame(width: compact ? 132 : 152, height: compact ? 48 : 68).practiceGlass(radius: 20, tint: .indigo.opacity(0.06))
                 }
             }.foregroundStyle(tabletAccent)
             Spacer(minLength: 0)
@@ -71,12 +72,12 @@ struct TabletPracticeView: View {
                     HStack(spacing: 5) {
                         ForEach(Array(line.enumerated()), id: \.offset) { _, part in
                             if let text = part.text {
-                                Text(text).font(.system(size: store.current.plainText.count < 14 ? 48 : 30, weight: .medium, design: .rounded))
+                                Text(text).font(.system(size: store.current.plainText.count < 14 ? (compact ? 34 : 48) : (compact ? 23 : 30), weight: .medium, design: .rounded))
                             } else if let blank = part.blank {
                                 Button { store.selectBlank(blank) } label: {
                                     Text(store.session.answers[store.session.index][blank].isEmpty ? " " : store.session.answers[store.session.index][blank])
-                                        .font(.system(size: 37, weight: .medium, design: .rounded))
-                                        .frame(minWidth: 60, minHeight: 66).padding(.horizontal, 3)
+                                        .font(.system(size: compact ? 28 : 37, weight: .medium, design: .rounded))
+                                        .frame(minWidth: compact ? 44 : 60, minHeight: compact ? 48 : 66).padding(.horizontal, 3)
                                         .practiceGlass(radius: 13, tint: .indigo.opacity(0.05), interactive: true)
                                         .overlay(RoundedRectangle(cornerRadius: 13).stroke(store.session.activeBlank == blank ? tabletAccent : .clear, lineWidth: 2))
                                 }.buttonStyle(.plain).foregroundStyle(tabletAccent).accessibilityLabel("第\(blank + 1)空")
@@ -86,15 +87,15 @@ struct TabletPracticeView: View {
                 }
             }.frame(maxWidth: .infinity)
             Spacer(minLength: 0)
-        }.padding(22)
+        }.padding(compact ? 14 : 22)
             .background(.white.opacity(0.55), in: RoundedRectangle(cornerRadius: 26))
             .overlay(RoundedRectangle(cornerRadius: 26).stroke(.white.opacity(0.8), lineWidth: 1))
             .overlay(alignment: .bottom) {
                 if !store.notice.isEmpty { Text(store.notice).font(.system(size: 17)).foregroundStyle(.orange).padding(12) }
             }
     }
-    private func controls(keyHeight: CGFloat) -> some View {
-        VStack(spacing: 16) {
+    private func controls(keyHeight: CGFloat, compact: Bool = false) -> some View {
+        VStack(spacing: compact ? 12 : 16) {
             if let best = store.best {
                 HStack {
                     Image(systemName: "trophy.fill").foregroundStyle(.orange)
@@ -126,7 +127,7 @@ struct TabletPracticeView: View {
                         .font(.system(size: 22, weight: .semibold)).frame(maxWidth: .infinity).frame(height: 32)
                 }.buttonStyle(PracticeActionStyle(prominent: true))
             }
-        }.padding(18)
+        }.padding(compact ? 12 : 18)
             .background(.white.opacity(0.25), in: RoundedRectangle(cornerRadius: 24))
             .overlay(RoundedRectangle(cornerRadius: 24).stroke(.white.opacity(0.8), lineWidth: 1))
     }

@@ -1,6 +1,6 @@
 # 小学二年级口算练习
 
-面向小学二年级的 macOS / iPad 原生口算练习应用，可离线使用，使用 SwiftUI 构建。界面为儿童练习设计，突出题目、计时和输入，减少文字说明。
+面向小学二年级的 macOS / iPhone / iPad 原生口算练习应用，可离线使用，使用 SwiftUI 构建。界面为儿童练习设计，突出题目、计时和输入，减少文字说明。
 
 ## 界面预览
 
@@ -32,11 +32,11 @@
 - macOS 26以上使用原生 Liquid Glass，旧版使用磨砂材质；支持系统“减少透明度”设置。
 - 自定义重来确认卡片和按列对齐的练习记录面板。
 
-## iPad 版
+## iPhone / iPad 版
 
-iPad 版已加入，提供横竖屏自适应布局与大触控按键，适合直接用手指练习。
+iPhone 使用竖屏紧凑布局与大触控键盘；iPad 提供横竖屏自适应布局。两者共用题库，均可离线练习并自动保存本机进度。
 
-用 Xcode 打开 [`iPad/Grade2MathPractice.xcodeproj`](iPad/Grade2MathPractice.xcodeproj)，选择自己的签名 Team 和 iPad 后运行。最低 iPadOS 17，详见 [iPad 安装与验证说明](iPad/README.md)。
+用 Xcode 打开 [`iPad/Grade2MathPractice.xcodeproj`](iPad/Grade2MathPractice.xcodeproj)，选择自己的签名 Team 和 iPhone / iPad 后运行。最低 iOS / iPadOS 17，也可将 IPA 导入 LiveContainer，详见 [手机和平板安装与验证说明](iPad/README.md)。
 
 ## 环境
 
@@ -72,4 +72,4 @@ scripts/                   app打包与程序化图标生成
 
 练习记录显示每轮的错题数量。新完成的练习会保存具体错题，可点击“练错题”进入该轮的错题练习，题量按实际错题数显示。错题练习成绩单独标记，不参与整套100题最快纪录；可返回原来的整套练习进度。
 
-旧版本记录仍可显示错题数量。只有当前仍保留完整作答的最近一轮能自动恢复具体错题；其他旧记录若只有总分，将标注“旧记录未保存具体题目”，不提供错误的重练入口。Mac和iPad记录依然分别保存。
+旧版本记录仍可显示错题数量。只有当前仍保留完整作答的最近一轮能自动恢复具体错题；其他旧记录若只有总分，将标注“旧记录未保存具体题目”，不提供错误的重练入口。Mac、iPhone 和 iPad 记录分别保存。

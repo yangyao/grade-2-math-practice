@@ -14,14 +14,15 @@ Dir.chdir(root) do
   target.resources_build_phase.add_file_reference(resources.new_file('Assets.xcassets'))
   target.build_configurations.each do |config|
     config.build_settings.merge!({
-      'SWIFT_VERSION' => '6.0', 'MARKETING_VERSION' => '1.3.0', 'CURRENT_PROJECT_VERSION' => '4', 'PRODUCT_NAME' => 'Grade2MathPracticeIPad',
+      'SWIFT_VERSION' => '6.0', 'MARKETING_VERSION' => '1.4.0', 'CURRENT_PROJECT_VERSION' => '5', 'PRODUCT_NAME' => 'Grade2MathPracticeIPad',
       'PRODUCT_BUNDLE_IDENTIFIER' => 'dev.yangyao.Grade2MathPractice.iPad',
       'GENERATE_INFOPLIST_FILE' => 'YES', 'INFOPLIST_KEY_CFBundleDisplayName' => '口算练习',
-      'TARGETED_DEVICE_FAMILY' => '2', 'SUPPORTS_MACCATALYST' => 'NO',
+      'TARGETED_DEVICE_FAMILY' => '1,2', 'SUPPORTS_MACCATALYST' => 'NO',
       'ASSETCATALOG_COMPILER_APPICON_NAME' => 'AppIcon', 'CODE_SIGN_STYLE' => 'Automatic',
       'INFOPLIST_KEY_UIApplicationSceneManifest_Generation' => 'YES',
       'INFOPLIST_KEY_UILaunchScreen_Generation' => 'YES',
       'INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents' => 'YES',
+      'INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone' => 'UIInterfaceOrientationPortrait',
       'INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad' => 'UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight'
     })
   end

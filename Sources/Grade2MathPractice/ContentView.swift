@@ -250,7 +250,7 @@ struct ContentView: View {
             }
             HStack(spacing: 16) {
                 Text("用时").frame(maxWidth: .infinity, alignment: .leading)
-                Text("错题").frame(width: 105, alignment: .trailing)
+                Text("错题").frame(width: 80, alignment: .trailing)
                 Color.clear.frame(width: 30, height: 1)
             }.font(.system(size: 16, weight: .medium)).foregroundStyle(.secondary).padding(.horizontal, 18)
             ScrollView {
@@ -268,7 +268,7 @@ struct ContentView: View {
                             HStack(alignment: .center, spacing: 16) {
                                 VStack(alignment: .leading, spacing: 7) {
                                     Text("\(PracticeStore.seconds(record.seconds)) 秒")
-                                        .font(.system(size: 25, weight: .semibold, design: .rounded)).monospacedDigit().foregroundStyle(purple)
+                                        .font(.system(size: 25, weight: .semibold, design: .rounded)).monospacedDigit().foregroundStyle(purple).lineLimit(1).minimumScaleFactor(0.65)
                                     Text(record.date, format: .dateTime.month().day().hour().minute())
                                         .font(.system(size: 14)).foregroundStyle(.secondary)
                                     if record.isReviewPractice { Text("错题练习").font(.system(size: 14)).foregroundStyle(purple) }
@@ -278,7 +278,7 @@ struct ContentView: View {
                                         .font(.system(size: 20, weight: .semibold, design: .rounded))
                                         .foregroundStyle(record.wrongCount > 0 ? Color.orange : purple)
                                     Text("\(record.correct) / \(record.total)").font(.system(size: 14)).foregroundStyle(.secondary)
-                                }.monospacedDigit().frame(width: 105, alignment: .trailing)
+                                }.monospacedDigit().frame(width: 80, alignment: .trailing)
                                 Image(systemName: "trophy.fill").font(.system(size: 21)).foregroundStyle(.orange)
                                     .frame(width: 30).opacity(record.id == store.best?.id ? 1 : 0)
                                     .accessibilityLabel(record.id == store.best?.id ? "最快纪录" : "")
